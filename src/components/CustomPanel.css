@@ -1,0 +1,28 @@
+.light-theme {
+  --exampleContainerBackgroundColor: var(--color-text-inverse);
+  --exampleContainerBorderColor: var(--colorQuaternaryLighten1);
+}
+.dark-theme {
+  --exampleContainerBackgroundColor: var(--color-background-surface-default);
+  --exampleContainerBorderColor: #283f58;
+}
+.example-container {
+  min-width: 20rem;
+  background: var(--exampleContainerBackgroundColor);
+  border: 1px solid var(--exampleContainerBorderColor);
+  padding: 0.625rem;
+  display: block;
+}
+.firstDiv {
+  padding: 1%;
+  display: flex;
+  justify-content: center;
+}
+/*.input {*/
+/*    padding-right: .5%;*/
+/*    padding-left: .25%;*/
+/*}*/
+
+.input {
+  display: none;
+}

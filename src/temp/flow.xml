@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BLUEPRINT>
+  <CHAIN name="SatrnSecondary">
+    <BLOCK name="TcpSatrnUpSecondary" libname="network.TcpServer">
+      <UIMETADATA>
+        <ARGUMENT name="ID" val="dnd_node.0.9376130126561384.0.3020879022451267"/>
+        <ARGUMENT name="PositionX" val="-213.89946141863336"/>
+        <ARGUMENT name="PositionY" val="16.80237634080779"/>
+      </UIMETADATA>
+      <ARGUMENT name="LogLevel" val="info"/>
+      <ARGUMENT name="Enabled" val="true"/>
+      <ARGUMENT name="WriteTimeout" val="100"/>
+      <ARGUMENT name="ReadTimeout" val="100"/>
+      <ARGUMENT name="SocketReceiveBufferSize" val="212992"/>
+      <ARGUMENT name="SocketSendBufferSize" val="212992"/>
+      <ARGUMENT name="WriteRetries" val="2"/>
+      <ARGUMENT name="Reset" val="false"/>
+      <ARGUMENT name="MaxClients" val="5"/>
+      <ARGUMENT name="Port" val="0"/>
+    </BLOCK>
+    <BLOCK name="TcpSatrnSecondary" libname="network.TcpServer">
+      <UIMETADATA>
+        <ARGUMENT name="ID" val="dnd_node.0.9376130126561384.0.36116104700139773"/>
+        <ARGUMENT name="PositionX" val="-213.89946141863336"/>
+        <ARGUMENT name="PositionY" val="135.82850976601486"/>
+      </UIMETADATA>
+      <ARGUMENT name="LogLevel" val="info"/>
+      <ARGUMENT name="Enabled" val="true"/>
+      <ARGUMENT name="WriteTimeout" val="100"/>
+      <ARGUMENT name="ReadTimeout" val="100"/>
+      <ARGUMENT name="SocketReceiveBufferSize" val="212992"/>
+      <ARGUMENT name="SocketSendBufferSize" val="212992"/>
+      <ARGUMENT name="WriteRetries" val="2"/>
+      <ARGUMENT name="Reset" val="false"/>
+      <ARGUMENT name="MaxClients" val="5"/>
+      <ARGUMENT name="Port" val="0"/>
+    </BLOCK>
+    <BLOCK name="ToTcpSatrnDownLithium" libname="network.TcpClient">
+      <UIMETADATA>
+        <ARGUMENT name="ID" val="dnd_node.0.40969132896109517.0.5452797166665713"/>
+        <ARGUMENT name="PositionX" val="-213.1951647711469"/>
+        <ARGUMENT name="PositionY" val="271.7577627308963"/>
+      </UIMETADATA>
+      <ARGUMENT name="LogLevel" val="info"/>
+      <ARGUMENT name="Enabled" val="true"/>
+      <ARGUMENT name="WriteTimeout" val="100"/>
+      <ARGUMENT name="ReadTimeout" val="100"/>
+      <ARGUMENT name="SocketReceiveBufferSize" val="212992"/>
+      <ARGUMENT name="SocketSendBufferSize" val="212992"/>
+      <ARGUMENT name="WriteRetries" val="2"/>
+      <ARGUMENT name="Reset" val="false"/>
+      <ARGUMENT name="TcpClientConnectionTimeout" val="100"/>
+      <ARGUMENT name="Address" val="127.0.0.1"/>
+      <ARGUMENT name="Port" val="0"/>
+    </BLOCK>
+    <CONNECT outblock="TcpSatrnUpSecondary" outchannel="output" inblock="TcpSatrnSecondary" inchannel="input"/>
+    <CONNECT outblock="TcpSatrnSecondary" outchannel="output" inblock="ToTcpSatrnDownLithium" inchannel="input"/>
+    <UIMETADATA>
+      <ARGUMENT name="MarkerEndType" val="Arrow"/>
+      <ARGUMENT name="MarkerEndWidth" val="35"/>
+      <ARGUMENT name="MarkerEndHeight" val="35"/>
+      <ARGUMENT name="ViewportX" val="720.3167015236429"/>
+      <ARGUMENT name="ViewportY" val="84.86491778903309"/>
+      <ARGUMENT name="ViewportZoom" val="2"/>
+    </UIMETADATA>
+  </CHAIN>
+</BLUEPRINT>

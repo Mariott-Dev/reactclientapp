@@ -1,0 +1,57 @@
+{
+    "nodes": [
+        {
+            "width": 226,
+            "height": 68,
+            "id": "dnd_node.undefined.0.10539164830026282",
+            "type": "SelectableNode",
+            "position": {
+                "x": -37.17067848098708,
+                "y": -21.195298565304768
+            },
+            "data": {
+                "name": "blocks-core.network.TcpServer",
+                "blockData": {
+                    "arguments": [
+                        {
+                            "controlType": "comboBox",
+                            "dataType": "string",
+                            "default": "info",
+                            "description": "Log level for this block",
+                            "name": "LogLevel",
+                            "options": [
+                                "trace",
+                                "debug",
+                                "info",
+                                "warning",
+                                "error",
+                                "fatal",
+                                "always"
+                            ]
+                        },
+                        {
+                            "controlType": "checkBox",
+                            "dataType": "bool",
+                            "default": "true",
+                            "description": "If set to false, the block will immediately terminate",
+                            "name": "Enabled"
+                        },
+                        {
+                            "controlType": "textBox",
+                            "dataType": "uint32",
+                            "default": "100",
+                            "description": "The time (in milliseconds) to wait for a single write before giving up",
+                            "name": "WriteTimeout"
+                        },
+                        {
+                            "controlType": "textBox",
+                            "dataType": "uint32",
+                            "default": "100",
+                            "description": "The time (in milliseconds) to wait for a single read before giving up",
+                            "name": "ReadTimeout"
+                        },
+                        {
+                            "controlType": "textBox",
+                            "dataType": "uint32",
+                            "default": "212992",
+                            "description":"S

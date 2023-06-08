@@ -1,0 +1,561 @@
+{
+    "nodes": [
+        {
+            "width": 226,
+            "height": 68,
+            "id": "TcpSaturnUpSecondary",
+            "type": "SelectableNode",
+            "position": {
+                "x": 257.5197756431441,
+                "y": 291.5222006550807
+            },
+            "data": {
+                "name": "blocks-core.network.TcpServer",
+                "blockData": {
+                    "id": "blocks-core.network.TcpServer",
+                    "arguments": [
+                        {
+                            "controlType": "comboBox",
+                            "dataType": "string",
+                            "default": "info",
+                            "description": "Log level for this block",
+                            "name": "LogLevel",
+                            "options": [
+                                "trace",
+                                "debug",
+                                "info",
+                                "warning",
+                                "error",
+                                "fatal",
+                                "always"
+                            ]
+                        },
+                        {
+                            "controlType": "checkBox",
+                            "dataType": "bool",
+                            "default": "true",
+                            "description": "If set to false, the block will immediately terminate",
+                            "name": "Enabled"
+                        },
+                        {
+                            "controlType": "textBox",
+                            "dataType": "uint32",
+                            "default": "100",
+                            "description": "The time (in milliseconds) to wait for a single write before giving up",
+                            "name": "WriteTimeout"
+                        },
+                        {
+                            "controlType": "textBox",
+                            "dataType": "uint32",
+                            "default": "100",
+                            "description": "The time (in milliseconds) to wait for a single read before giving up",
+                            "name": "ReadTimeout"
+                        },
+                        {
+                            "controlType": "textBox",
+                            "dataType": "uint32",
+                            "default": "212992",
+                            "description": "Socket maximum receive buffer size",
+                            "name": "SocketReceiveBufferSize"
+                        },
+                        {
+                            "controlType": "textBox",
+                            "dataType": "uint32",
+                            "default": "212992",
+                            "description": "Socket maximum send buffer size",
+                            "name": "SocketSendBufferSize"
+                        },
+                        {
+                            "controlType": "textBox",
+                            "dataType": "uint32",
+                            "default": "2",
+                            "description": "The number of write retries to make before declaring the connection dead",
+                            "name": "WriteRetries"
+                        },
+                        {
+                            "controlType": "checkBox",
+                            "dataType": "bool",
+                            "default": "false",
+                            "description": "Resets the socket if set to true",
+                            "name": "Reset"
+                        },
+                        {
+                            "controlType": "textBox",
+                            "dataType": "uint32",
+                            "default": "5",
+                            "description": "The maximum number of clients to allow",
+                            "name": "MaxClients"
+                        },
+                        {
+                            "controlType": "textBox",
+                            "dataType": "uint32",
+                            "default": "0",
+                            "description": "The TCP port to listen on",
+                            "name": "Port"
+                        }
+                    ],
+                    "name": "blocks-core.network.TcpServer",
+                    "nameCat": "network",
+                    "statistics": [
+                        {
+                            "dataType": "uint64",
+                            "description": "Total number of messages received across all input channels",
+                            "name": "TotalMessagesIn"
+                        },
+                        {
+                            "dataType": "uint64",
+                            "description": "Total number of messages sent across all output channels",
+                            "name": "TotalMessagesOut"
+                        },
+                        {
+                            "dataType": "uint64",
+                            "description": "Total number of bytes received across all input channels",
+                            "name": "TotalBytesIn"
+                        },
+                        {
+                            "dataType": "uint64",
+                            "description": "Total number of bytes sent across all output channels",
+                            "name": "TotalBytesOut"
+                        },
+                        {
+                            "dataType": "bool",
+                            "description": "Flag indicating that a connection has been made",
+                            "name": "Connected"
+                        },
+                        {
+                            "dataType": "uint64",
+                            "description": "Total number of bytes written to all remote connections",
+                            "name": "TotalBytesWritten"
+                        },
+                        {
+                            "dataType": "uint64",
+                            "description": "Total bytes read from all remote connections",
+                            "name": "TotalBytesRead"
+                        },
+                        {
+                            "dataType": "uint32",
+                            "description": "Total number of clients processed",
+                            "name": "ClientsProcessed"
+                        },
+                        {
+                            "dataType": "uint32",
+                            "description": "Total number of clients dropped",
+                            "name": "ClientsDropped"
+                        }
+                    ],
+                    "slots": [],
+                    "signals": [],
+                    "channels": [
+                        {
+                            "dataType": "uint8",
+                            "description": "Messages arriving on this channel will be sent to any connected clients or just one if meta matches a particular client",
+                            "direction": "input",
+                            "name": "input",
+                            "handleStyle": {
+                                "left": 10
+                            },
+                            "id": 1
+                        },
+                        {
+                            "dataType": "uint8",
+                            "description": "Data received from any connected client will be sent to this output",
+                            "direction": "output",
+                            "name": "output",
+                            "handleStyle": {
+                                "left": 25
+                            },
+                            "id": 2
+                        }
+                    ],
+                    "description": "Binds to a TCP socket and handles sending and receiving data from connected TCP clients based on configuration",
+                    "newNodeName": "TcpSaturnUpSecondary"
+                }
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 257.5197756431441,
+                "y": 291.5222006550807
+            },
+            "dragging": false
+        },
+        {
+            "width": 226,
+            "height": 68,
+            "id": "TcpSatrnSecondary",
+            "type": "SelectableNode",
+            "position": {
+                "x": 255.24904560514125,
+                "y": 393.93212536899864
+            },
+            "data": {
+                "name": "blocks-core.network.TcpServer",
+                "blockData": {
+                    "id": "blocks-core.network.TcpServer",
+                    "arguments": [
+                        {
+                            "controlType": "comboBox",
+                            "dataType": "string",
+                            "default": "info",
+                            "description": "Log level for this block",
+                            "name": "LogLevel",
+                            "options": [
+                                "trace",
+                                "debug",
+                                "info",
+                                "warning",
+                                "error",
+                                "fatal",
+                                "always"
+                            ]
+                        },
+                        {
+                            "controlType": "checkBox",
+                            "dataType": "bool",
+                            "default": "true",
+                            "description": "If set to false, the block will immediately terminate",
+                            "name": "Enabled"
+                        },
+                        {
+                            "controlType": "textBox",
+                            "dataType": "uint32",
+                            "default": "100",
+                            "description": "The time (in milliseconds) to wait for a single write before giving up",
+                            "name": "WriteTimeout"
+                        },
+                        {
+                            "controlType": "textBox",
+                            "dataType": "uint32",
+                            "default": "100",
+                            "description": "The time (in milliseconds) to wait for a single read before giving up",
+                            "name": "ReadTimeout"
+                        },
+                        {
+                            "controlType": "textBox",
+                            "dataType": "uint32",
+                            "default": "212992",
+                            "description": "Socket maximum receive buffer size",
+                            "name": "SocketReceiveBufferSize"
+                        },
+                        {
+                            "controlType": "textBox",
+                            "dataType": "uint32",
+                            "default": "212992",
+                            "description": "Socket maximum send buffer size",
+                            "name": "SocketSendBufferSize"
+                        },
+                        {
+                            "controlType": "textBox",
+                            "dataType": "uint32",
+                            "default": "2",
+                            "description": "The number of write retries to make before declaring the connection dead",
+                            "name": "WriteRetries"
+                        },
+                        {
+                            "controlType": "checkBox",
+                            "dataType": "bool",
+                            "default": "false",
+                            "description": "Resets the socket if set to true",
+                            "name": "Reset"
+                        },
+                        {
+                            "controlType": "textBox",
+                            "dataType": "uint32",
+                            "default": "5",
+                            "description": "The maximum number of clients to allow",
+                            "name": "MaxClients"
+                        },
+                        {
+                            "controlType": "textBox",
+                            "dataType": "uint32",
+                            "default": "0",
+                            "description": "The TCP port to listen on",
+                            "name": "Port"
+                        }
+                    ],
+                    "name": "blocks-core.network.TcpServer",
+                    "nameCat": "network",
+                    "statistics": [
+                        {
+                            "dataType": "uint64",
+                            "description": "Total number of messages received across all input channels",
+                            "name": "TotalMessagesIn"
+                        },
+                        {
+                            "dataType": "uint64",
+                            "description": "Total number of messages sent across all output channels",
+                            "name": "TotalMessagesOut"
+                        },
+                        {
+                            "dataType": "uint64",
+                            "description": "Total number of bytes received across all input channels",
+                            "name": "TotalBytesIn"
+                        },
+                        {
+                            "dataType": "uint64",
+                            "description": "Total number of bytes sent across all output channels",
+                            "name": "TotalBytesOut"
+                        },
+                        {
+                            "dataType": "bool",
+                            "description": "Flag indicating that a connection has been made",
+                            "name": "Connected"
+                        },
+                        {
+                            "dataType": "uint64",
+                            "description": "Total number of bytes written to all remote connections",
+                            "name": "TotalBytesWritten"
+                        },
+                        {
+                            "dataType": "uint64",
+                            "description": "Total bytes read from all remote connections",
+                            "name": "TotalBytesRead"
+                        },
+                        {
+                            "dataType": "uint32",
+                            "description": "Total number of clients processed",
+                            "name": "ClientsProcessed"
+                        },
+                        {
+                            "dataType": "uint32",
+                            "description": "Total number of clients dropped",
+                            "name": "ClientsDropped"
+                        }
+                    ],
+                    "slots": [],
+                    "signals": [],
+                    "channels": [
+                        {
+                            "dataType": "uint8",
+                            "description": "Messages arriving on this channel will be sent to any connected clients or just one if meta matches a particular client",
+                            "direction": "input",
+                            "name": "input",
+                            "handleStyle": {
+                                "left": 10
+                            },
+                            "id": 1
+                        },
+                        {
+                            "dataType": "uint8",
+                            "description": "Data received from any connected client will be sent to this output",
+                            "direction": "output",
+                            "name": "output",
+                            "handleStyle": {
+                                "left": 25
+                            },
+                            "id": 2
+                        }
+                    ],
+                    "description": "Binds to a TCP socket and handles sending and receiving data from connected TCP clients based on configuration",
+                    "newNodeName": "TcpSatrnSecondary"
+                }
+            },
+            "selected": true,
+            "positionAbsolute": {
+                "x": 255.24904560514125,
+                "y": 393.93212536899864
+            },
+            "dragging": false
+        },
+        {
+            "width": 226,
+            "height": 68,
+            "id": null,
+            "type": "SelectableNode",
+            "position": {
+                "x": 258.31053659964994,
+                "y": 555.1539586644546
+            },
+            "data": {
+                "name": "blocks-core.network.TcpClient",
+                "blockData": {
+                    "id": "blocks-core.network.TcpClient",
+                    "arguments": [
+                        {
+                            "controlType": "comboBox",
+                            "dataType": "string",
+                            "default": "info",
+                            "description": "Log level for this block",
+                            "name": "LogLevel",
+                            "options": [
+                                "trace",
+                                "debug",
+                                "info",
+                                "warning",
+                                "error",
+                                "fatal",
+                                "always"
+                            ]
+                        },
+                        {
+                            "controlType": "checkBox",
+                            "dataType": "bool",
+                            "default": "true",
+                            "description": "If set to false, the block will immediately terminate",
+                            "name": "Enabled"
+                        },
+                        {
+                            "controlType": "textBox",
+                            "dataType": "uint32",
+                            "default": "100",
+                            "description": "The time (in milliseconds) to wait for a single write before giving up",
+                            "name": "WriteTimeout"
+                        },
+                        {
+                            "controlType": "textBox",
+                            "dataType": "uint32",
+                            "default": "100",
+                            "description": "The time (in milliseconds) to wait for a single read before giving up",
+                            "name": "ReadTimeout"
+                        },
+                        {
+                            "controlType": "textBox",
+                            "dataType": "uint32",
+                            "default": "212992",
+                            "description": "Socket maximum receive buffer size",
+                            "name": "SocketReceiveBufferSize"
+                        },
+                        {
+                            "controlType": "textBox",
+                            "dataType": "uint32",
+                            "default": "212992",
+                            "description": "Socket maximum send buffer size",
+                            "name": "SocketSendBufferSize"
+                        },
+                        {
+                            "controlType": "textBox",
+                            "dataType": "uint32",
+                            "default": "2",
+                            "description": "The number of write retries to make before declaring the connection dead",
+                            "name": "WriteRetries"
+                        },
+                        {
+                            "controlType": "checkBox",
+                            "dataType": "bool",
+                            "default": "false",
+                            "description": "Resets the socket if set to true",
+                            "name": "Reset"
+                        },
+                        {
+                            "controlType": "textBox",
+                            "dataType": "uint32",
+                            "default": "100",
+                            "description": "The time (in ms) to wait for a TCP client to connect to its server",
+                            "name": "TcpClientConnectionTimeout"
+                        },
+                        {
+                            "controlType": "textBox",
+                            "dataType": "string",
+                            "default": "127.0.0.1",
+                            "description": "The address (hostname/port) of the TCP server to connect to",
+                            "name": "Address"
+                        },
+                        {
+                            "controlType": "textBox",
+                            "dataType": "uint32",
+                            "default": "0",
+                            "description": "The TCP port to connect over",
+                            "name": "Port"
+                        }
+                    ],
+                    "name": "blocks-core.network.TcpClient",
+                    "nameCat": "network",
+                    "statistics": [
+                        {
+                            "dataType": "uint64",
+                            "description": "Total number of messages received across all input channels",
+                            "name": "TotalMessagesIn"
+                        },
+                        {
+                            "dataType": "uint64",
+                            "description": "Total number of messages sent across all output channels",
+                            "name": "TotalMessagesOut"
+                        },
+                        {
+                            "dataType": "uint64",
+                            "description": "Total number of bytes received across all input channels",
+                            "name": "TotalBytesIn"
+                        },
+                        {
+                            "dataType": "uint64",
+                            "description": "Total number of bytes sent across all output channels",
+                            "name": "TotalBytesOut"
+                        },
+                        {
+                            "dataType": "bool",
+                            "description": "Flag indicating that a connection has been made",
+                            "name": "Connected"
+                        },
+                        {
+                            "dataType": "uint64",
+                            "description": "Total number of bytes written to all remote connections",
+                            "name": "TotalBytesWritten"
+                        },
+                        {
+                            "dataType": "uint64",
+                            "description": "Total bytes read from all remote connections",
+                            "name": "TotalBytesRead"
+                        },
+                        {
+                            "dataType": "uint32",
+                            "description": "Total number of server connections made",
+                            "name": "ServersConnected"
+                        },
+                        {
+                            "dataType": "uint32",
+                            "description": "Total number of server connections dropped",
+                            "name": "ServersDropped"
+                        }
+                    ],
+                    "slots": [],
+                    "signals": [],
+                    "channels": [
+                        {
+                            "dataType": "uint8",
+                            "description": "Data received on this channel will be sent to the connected TCP server (if any)",
+                            "direction": "input",
+                            "name": "input",
+                            "handleStyle": {
+                                "left": 10
+                            },
+                            "id": 1
+                        },
+                        {
+                            "dataType": "uint8",
+                            "description": "Any data received from the connected TCP server will be sent to this channel",
+                            "direction": "output",
+                            "name": "output",
+                            "handleStyle": {
+                                "left": 25
+                            },
+                            "id": 2
+                        }
+                    ],
+                    "description": "Connects to, receives, and sends data to a TCP server based on configuration",
+                    "newNodeName": "hlkjlk"
+                }
+            },
+            "positionAbsolute": {
+                "x": 258.31053659964994,
+                "y": 555.1539586644546
+            },
+            "dragging": false
+        }
+    ],
+    "edges": [
+        {
+            "source": "TcpSaturnUpSecondary",
+            "target": "TcpSatrnSecondary",
+            "markerEnd": {
+                "type": "arrow",
+                "width": 35,
+                "height": 35
+            },
+            "id": "reactflow__edge-TcpSaturnUpSecondary-TcpSatrnSecondary"
+        }
+    ],
+    "viewport": {
+        "x": 312.33174853291655,
+        "y": -422.09557915915843,
+        "zoom": 1.525239013376883
+    }
+}

@@ -1,0 +1,35 @@
+.label {
+  margin: 0;
+}
+.textspace {
+  margin-bottom: 0.5em;
+}
+.checkbox {
+  margin: 0;
+}
+.checkboxlabel {
+  margin: 0, 1em, 1em, 1em;
+}
+.savebutton {
+  padding: 10%;
+  display: flex;
+  justify-content: right;
+}
+.errorText {
+  color: rgb(236, 103, 103);
+}
+
+.subheader {
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+rux-container {
+  color: #DAEEFF
+}
+
+/* Styles for tooltip */
+
+/* End of styles for tooltip */

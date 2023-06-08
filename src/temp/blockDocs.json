@@ -1,0 +1,2333 @@
+{
+    "header": {
+        "id": "0",
+        "name": "GetAllBlockDocs",
+        "type": "response"
+    },
+    "parameters": {
+        "blockDocs": [
+            {
+                "arguments": [
+                    {
+                        "controlType": "comboBox",
+                        "dataType": "string",
+                        "default": "info",
+                        "description": "Log level for this block",
+                        "name": "LogLevel",
+                        "options": [
+                            "trace",
+                            "debug",
+                            "info",
+                            "warning",
+                            "error",
+                            "fatal",
+                            "always"
+                        ]
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "true",
+                        "description": "If set to false, the block will immediately terminate",
+                        "name": "Enabled"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint64",
+                        "default": "8",
+                        "description": "Number of bits to use (1-8) for each symbol - use 8 to convert bits to bytes",
+                        "name": "BitsPerSymbol"
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "true",
+                        "description": "Flag indicating whether to insert bits MSb-first (true) or LSb-first (false)",
+                        "name": "IsBigEndian"
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "false",
+                        "description": "Flag indicating whether to drop the final symbol if there aren't enough bits to fill it completely",
+                        "name": "DropPartialSymbols"
+                    }
+                ],
+                "blockLibraryName": "blocks-core.comms.BitsToSymbols",
+                "channels": [
+                    {
+                        "dataType": "uint8",
+                        "description": "Messages received on this input will be converted to the configured symbol",
+                        "direction": "input",
+                        "name": "input"
+                    },
+                    {
+                        "dataType": "uint8",
+                        "description": "After symbol conversion data will be sent to this output",
+                        "direction": "output",
+                        "name": "output"
+                    }
+                ],
+                "description": "The BitsToSymbols block takes as input a 'bit' buffer of uint8, each using only the least significant bit, and packs them into a 'symbol' buffer of uint8, each using the first 1-8 least significant bits. It can insert the bits in either MSb or LSb order.",
+                "signals": [],
+                "slots": [],
+                "statistics": [
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages received across all input channels",
+                        "name": "TotalMessagesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages sent across all output channels",
+                        "name": "TotalMessagesOut"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes received across all input channels",
+                        "name": "TotalBytesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes sent across all output channels",
+                        "name": "TotalBytesOut"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bits that have been received on the input",
+                        "name": "TotalBitsIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of symbols that have been posted to the output",
+                        "name": "TotalSymbolsOut"
+                    }
+                ]
+            },
+            {
+                "arguments": [
+                    {
+                        "controlType": "comboBox",
+                        "dataType": "string",
+                        "default": "info",
+                        "description": "Log level for this block",
+                        "name": "LogLevel",
+                        "options": [
+                            "trace",
+                            "debug",
+                            "info",
+                            "warning",
+                            "error",
+                            "fatal",
+                            "always"
+                        ]
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "true",
+                        "description": "If set to false, the block will immediately terminate",
+                        "name": "Enabled"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint32",
+                        "default": "1",
+                        "description": "Number of output channels, also the number of items interleaved into the input by",
+                        "name": "NumChannelsOut"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint32",
+                        "default": "1",
+                        "description": "A list containing the 1-based channel indices in the correct interleaved order",
+                        "name": "DeinterleavingOrder"
+                    }
+                ],
+                "blockLibraryName": "blocks-core.comms.Deinterleaver",
+                "channels": [
+                    {
+                        "dataType": "uint8",
+                        "description": "Interleaved data input",
+                        "direction": "input",
+                        "name": "input"
+                    },
+                    {
+                        "dataType": "uint8",
+                        "description": "Output channels are dynamically created in this block based on the argument settings",
+                        "direction": "output",
+                        "name": "output"
+                    }
+                ],
+                "description": "",
+                "signals": [],
+                "slots": [
+                    {
+                        "dataType": "array_uint64",
+                        "description": "Sets the list containing the 1-based channel indices for the correct interleaved order",
+                        "name": "SetDeinterleavingOrder"
+                    }
+                ],
+                "statistics": [
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages received across all input channels",
+                        "name": "TotalMessagesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages sent across all output channels",
+                        "name": "TotalMessagesOut"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes received across all input channels",
+                        "name": "TotalBytesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes sent across all output channels",
+                        "name": "TotalBytesOut"
+                    }
+                ]
+            },
+            {
+                "arguments": [
+                    {
+                        "controlType": "comboBox",
+                        "dataType": "string",
+                        "default": "info",
+                        "description": "Log level for this block",
+                        "name": "LogLevel",
+                        "options": [
+                            "trace",
+                            "debug",
+                            "info",
+                            "warning",
+                            "error",
+                            "fatal",
+                            "always"
+                        ]
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "true",
+                        "description": "If set to false, the block will immediately terminate",
+                        "name": "Enabled"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "string",
+                        "default": "",
+                        "description": "Set this argument to anything to reset the shift register",
+                        "name": "Reset"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint64",
+                        "default": "1",
+                        "description": "Polynomial to use for the LFSR",
+                        "name": "Polynomial"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint64",
+                        "default": "1",
+                        "description": "Value to load the LFSR with when initializing and resetting",
+                        "name": "SeedValue"
+                    },
+                    {
+                        "controlType": "comboBox",
+                        "dataType": "string",
+                        "default": "additive",
+                        "description": "Type of LFSR to use - Options are 'additive' and 'multiplicative' (or 'recursive')",
+                        "name": "Mode",
+                        "options": [
+                            "additive",
+                            "multiplicative",
+                            "recursive"
+                        ]
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "true",
+                        "description": "Whether to reset the LFSR at the beginning of each message",
+                        "name": "ResetEveryMessage"
+                    }
+                ],
+                "blockLibraryName": "blocks-core.comms.Derandomizer",
+                "channels": [
+                    {
+                        "dataType": "uint8",
+                        "description": "Randomized data input",
+                        "direction": "input",
+                        "name": "input"
+                    },
+                    {
+                        "dataType": "uint8",
+                        "description": "Derandomized data output",
+                        "direction": "output",
+                        "name": "output"
+                    }
+                ],
+                "description": "",
+                "signals": [],
+                "slots": [],
+                "statistics": [
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages received across all input channels",
+                        "name": "TotalMessagesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages sent across all output channels",
+                        "name": "TotalMessagesOut"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes received across all input channels",
+                        "name": "TotalBytesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes sent across all output channels",
+                        "name": "TotalBytesOut"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Current value of the LFSR used to generate the pseudo random pattern",
+                        "name": "LFSR"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bits that have been randomized by this block",
+                        "name": "TotalBits"
+                    }
+                ]
+            },
+            {
+                "arguments": [
+                    {
+                        "controlType": "comboBox",
+                        "dataType": "string",
+                        "default": "info",
+                        "description": "Log level for this block",
+                        "name": "LogLevel",
+                        "options": [
+                            "trace",
+                            "debug",
+                            "info",
+                            "warning",
+                            "error",
+                            "fatal",
+                            "always"
+                        ]
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "true",
+                        "description": "If set to false, the block will immediately terminate",
+                        "name": "Enabled"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "array_uint8",
+                        "default": "0x55, 0x55, 0x55, 0x55",
+                        "description": "Idle sequence to output",
+                        "name": "IdleSequence"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "size_t",
+                        "default": "1",
+                        "description": "Number of times to repeat idle sequence",
+                        "name": "RepeatCount"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "size_t",
+                        "default": "0",
+                        "description": "Maximum output queue size, for flow control (0 disables)",
+                        "name": "MaxQueueSize"
+                    }
+                ],
+                "blockLibraryName": "blocks-core.comms.IdleInjector",
+                "channels": [
+                    {
+                        "dataType": "uint8",
+                        "description": "Incoming messages on this channel will be zero copied to the output",
+                        "direction": "input",
+                        "name": "input"
+                    },
+                    {
+                        "dataType": "uint8",
+                        "description": "Idle and any incoming messages will be put on this channel",
+                        "direction": "output",
+                        "name": "output"
+                    }
+                ],
+                "description": "Adds idle frames to the output at the configured rate",
+                "signals": [],
+                "slots": [],
+                "statistics": [
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages received across all input channels",
+                        "name": "TotalMessagesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages sent across all output channels",
+                        "name": "TotalMessagesOut"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes received across all input channels",
+                        "name": "TotalBytesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes sent across all output channels",
+                        "name": "TotalBytesOut"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of idle sequences that have been posted to the output",
+                        "name": "TotalIdleOut"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of frames that have been posted to the output",
+                        "name": "TotalFramesOut"
+                    }
+                ]
+            },
+            {
+                "arguments": [
+                    {
+                        "controlType": "comboBox",
+                        "dataType": "string",
+                        "default": "info",
+                        "description": "Log level for this block",
+                        "name": "LogLevel",
+                        "options": [
+                            "trace",
+                            "debug",
+                            "info",
+                            "warning",
+                            "error",
+                            "fatal",
+                            "always"
+                        ]
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "true",
+                        "description": "If set to false, the block will immediately terminate",
+                        "name": "Enabled"
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "false",
+                        "description": "True if appending a static pattern to incoming messages",
+                        "name": "UseFooter"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "array_uint8",
+                        "default": "",
+                        "description": "The sequence to append when enabled. (Specified in vector form)",
+                        "name": "FooterSequence"
+                    }
+                ],
+                "blockLibraryName": "blocks-core.framing.AddFooter",
+                "channels": [
+                    {
+                        "dataType": "uint8",
+                        "description": "Messages on this input port will receive the configured footer",
+                        "direction": "input",
+                        "name": "input"
+                    },
+                    {
+                        "dataType": "uint8",
+                        "description": "After message receive the footer they are put on this output channel",
+                        "direction": "output",
+                        "name": "output"
+                    }
+                ],
+                "description": "Adds a configurable sequence of bytes, length or both to the back of the incoming message",
+                "signals": [],
+                "slots": [],
+                "statistics": [
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages received across all input channels",
+                        "name": "TotalMessagesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages sent across all output channels",
+                        "name": "TotalMessagesOut"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes received across all input channels",
+                        "name": "TotalBytesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes sent across all output channels",
+                        "name": "TotalBytesOut"
+                    }
+                ]
+            },
+            {
+                "arguments": [
+                    {
+                        "controlType": "comboBox",
+                        "dataType": "string",
+                        "default": "info",
+                        "description": "Log level for this block",
+                        "name": "LogLevel",
+                        "options": [
+                            "trace",
+                            "debug",
+                            "info",
+                            "warning",
+                            "error",
+                            "fatal",
+                            "always"
+                        ]
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "true",
+                        "description": "If set to false, the block will immediately terminate",
+                        "name": "Enabled"
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "false",
+                        "description": "True if adding a static pattern to incoming messages",
+                        "name": "UseSync"
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "true",
+                        "description": "If set to true the length will be added in MSB, otherwise LSB",
+                        "name": "LengthEndianess"
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "true",
+                        "description": "Whether to add a length to the message",
+                        "name": "AddLength"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "array_uint8",
+                        "default": "0xD3, 0x91",
+                        "description": "The sync sequence to add when using a sync. (Specified in vector form)",
+                        "name": "SyncSequence"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint32",
+                        "default": "2",
+                        "description": "Number of bytes the length will occupy (must be <= 8)",
+                        "name": "LengthWidthBytes"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "int64",
+                        "default": "0",
+                        "description": "If not 0, the calculated message length will be offset by this value (applied with order given in argument OrderOfOperations)",
+                        "name": "LengthMod"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint64",
+                        "default": "0",
+                        "description": "If not 0, the calculated message length will be multiplied by this value (applied with order given in argument OrderOfOperations)",
+                        "name": "LengthMultiply"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint64",
+                        "default": "0",
+                        "description": "If not 0, the calculated message length will be divided by this value (applied with order given in argument OrderOfOperations)",
+                        "name": "LengthDivide"
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "false",
+                        "description": "If the length is not a multiple of the divisor, this defines whether the final length is rounded up or down, if set to true, rounded up, otherwise down",
+                        "name": "RoundUpDuringDivide"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "string",
+                        "default": "mda",
+                        "description": "Order to apply the length math operations, specified as one of (mda, mad, adm, amd, dam, dma) where m - multiply, d - divide, a - add/subtract",
+                        "name": "OrderOfOperations"
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "false",
+                        "description": "Converts the final length to bit length (length * 8) before adding to the header",
+                        "name": "LengthInBits"
+                    }
+                ],
+                "blockLibraryName": "blocks-core.framing.AddHeader",
+                "channels": [
+                    {
+                        "dataType": "uint8",
+                        "description": "Messages received on the output will have the configured header applied to them",
+                        "direction": "input",
+                        "name": "input"
+                    },
+                    {
+                        "dataType": "uint8",
+                        "description": "Once the header is applied to incoming messages they will be placed on this output channel",
+                        "direction": "output",
+                        "name": "output"
+                    }
+                ],
+                "description": "Adds a configurable sequence of bytes, length or both to the front of the incoming message",
+                "signals": [],
+                "slots": [],
+                "statistics": [
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages received across all input channels",
+                        "name": "TotalMessagesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages sent across all output channels",
+                        "name": "TotalMessagesOut"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes received across all input channels",
+                        "name": "TotalBytesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes sent across all output channels",
+                        "name": "TotalBytesOut"
+                    }
+                ]
+            },
+            {
+                "arguments": [
+                    {
+                        "controlType": "comboBox",
+                        "dataType": "string",
+                        "default": "info",
+                        "description": "Log level for this block",
+                        "name": "LogLevel",
+                        "options": [
+                            "trace",
+                            "debug",
+                            "info",
+                            "warning",
+                            "error",
+                            "fatal",
+                            "always"
+                        ]
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "true",
+                        "description": "If set to false, the block will immediately terminate",
+                        "name": "Enabled"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "string",
+                        "default": "",
+                        "description": "The file path",
+                        "name": "Path"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint32",
+                        "default": "1000",
+                        "description": "The number of bytes to read at a time",
+                        "name": "ReadSize"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint32",
+                        "default": "1",
+                        "description": "The number of times to read the file and send its contents to the output channel",
+                        "name": "PlaybackCount"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "int32",
+                        "default": "0",
+                        "description": "The number of bytes to skip at the beginning or end of the file",
+                        "name": "BytesToSkip"
+                    },
+                    {
+                        "controlType": "comboBox",
+                        "dataType": "string",
+                        "default": "beg",
+                        "description": "Which direction for the BytesToSkip argument to seek from",
+                        "name": "SeekDirection",
+                        "options": [
+                            "beg",
+                            "end"
+                        ]
+                    }
+                ],
+                "blockLibraryName": "blocks-core.io.FileReader",
+                "channels": [
+                    {
+                        "dataType": "uint8",
+                        "description": "Data read in from file in configured read size chunks",
+                        "direction": "output",
+                        "name": "output"
+                    }
+                ],
+                "description": "Reads data from a file with configured settings and passes data to the output channel",
+                "signals": [],
+                "slots": [],
+                "statistics": [
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages received across all input channels",
+                        "name": "TotalMessagesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages sent across all output channels",
+                        "name": "TotalMessagesOut"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes received across all input channels",
+                        "name": "TotalBytesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes sent across all output channels",
+                        "name": "TotalBytesOut"
+                    }
+                ]
+            },
+            {
+                "arguments": [
+                    {
+                        "controlType": "comboBox",
+                        "dataType": "string",
+                        "default": "info",
+                        "description": "Log level for this block",
+                        "name": "LogLevel",
+                        "options": [
+                            "trace",
+                            "debug",
+                            "info",
+                            "warning",
+                            "error",
+                            "fatal",
+                            "always"
+                        ]
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "true",
+                        "description": "If set to false, the block will immediately terminate",
+                        "name": "Enabled"
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "true",
+                        "description": "Dynamically enable or disable file writing functionality",
+                        "name": "WritingEnabled"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "string",
+                        "default": "",
+                        "description": "The path of the file to write to",
+                        "name": "Path"
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "true",
+                        "description": "Whether to overwrite the file (true - default) or append to it",
+                        "name": "Overwrite"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "string",
+                        "default": "",
+                        "description": "Set this argument to anything to (re)open the file specified by the other arguments and begin writing",
+                        "name": "Reset"
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "false",
+                        "description": "Whether to enable (true) or disable (false - default) the backup feature",
+                        "name": "BackupEnabled"
+                    },
+                    {
+                        "controlType": "comboBox",
+                        "dataType": "custom",
+                        "default": "TimeBased",
+                        "description": "The method to use to choose when to back up the file - options are TimeBased (default, backup every X hours), SizeBased (backup when file reaches X bytes); ignored if BackupEnabled is false",
+                        "name": "BackupMethod",
+                        "options": [
+                            "TimeBased",
+                            "SizeBased"
+                        ]
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "float64",
+                        "default": "24",
+                        "description": "How often to back up the file - units are hours if BackupMethod is TimeBased, or bytes if BackupMethod is SizeBased - default is 24 hours, ignored if BackupEnabled is false",
+                        "name": "BackupPeriod"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "string",
+                        "default": "<TimeStamp>",
+                        "description": "The path to use for the backup file - special values are '<TimeStamp>' to append a timestamp (YYYYMMDDThhmmss) to the Path argument, or '<Number>' to append an incrementing (from 1) number - default is '<TimeStamp>'. When a non-special path is specified and the backup file already exists, the backup doesn't take place, and the original file is reopened for appending",
+                        "name": "BackupPath"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "string",
+                        "default": "",
+                        "description": "Set this argument to anything to close the file, rename it to the backup name, and then reopen the original file to begin writing again - the Overwrite argument is ignored, and the file is always recreated",
+                        "name": "ManualBackup"
+                    }
+                ],
+                "blockLibraryName": "blocks-core.io.FileWriter",
+                "channels": [
+                    {
+                        "dataType": "uint8",
+                        "description": "Messages arriving on the input are written to file based on configuration",
+                        "direction": "input",
+                        "name": "input"
+                    }
+                ],
+                "description": "Writes incoming data to a file, at the given path, with backup options provided",
+                "signals": [],
+                "slots": [],
+                "statistics": [
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages received across all input channels",
+                        "name": "TotalMessagesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages sent across all output channels",
+                        "name": "TotalMessagesOut"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes received across all input channels",
+                        "name": "TotalBytesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes sent across all output channels",
+                        "name": "TotalBytesOut"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Current write position (in bytes) of the file",
+                        "name": "FilePosition"
+                    },
+                    {
+                        "dataType": "string",
+                        "description": "Path of the last backup file saved",
+                        "name": "LastBackupName"
+                    }
+                ]
+            },
+            {
+                "arguments": [
+                    {
+                        "controlType": "comboBox",
+                        "dataType": "string",
+                        "default": "info",
+                        "description": "Log level for this block",
+                        "name": "LogLevel",
+                        "options": [
+                            "trace",
+                            "debug",
+                            "info",
+                            "warning",
+                            "error",
+                            "fatal",
+                            "always"
+                        ]
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "true",
+                        "description": "If set to false, the block will immediately terminate",
+                        "name": "Enabled"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "string",
+                        "default": "",
+                        "description": "Set the path to the file from which to read",
+                        "name": "FilePath"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "float64",
+                        "default": "1.0",
+                        "description": "The rate of playback in reads/second. For example: 1.0 indicates normal time, 2.0 indicates double speed",
+                        "name": "PlaybackRate"
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "false",
+                        "description": "A bool indicating whether to use high precision delays between data reads",
+                        "name": "HighPrecisionDelays"
+                    }
+                ],
+                "blockLibraryName": "blocks-core.io.TimingFileReader",
+                "channels": [
+                    {
+                        "dataType": "uint8",
+                        "description": "Data read in from file in configured read size chunks",
+                        "direction": "output",
+                        "name": "output"
+                    }
+                ],
+                "description": "A file reader that periodically reads from a file at a specified rate.",
+                "signals": [],
+                "slots": [],
+                "statistics": [
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages received across all input channels",
+                        "name": "TotalMessagesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages sent across all output channels",
+                        "name": "TotalMessagesOut"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes received across all input channels",
+                        "name": "TotalBytesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes sent across all output channels",
+                        "name": "TotalBytesOut"
+                    },
+                    {
+                        "dataType": "bool",
+                        "description": "A bool indicating if the file is currently opened for reading",
+                        "name": "ActivelyReading"
+                    }
+                ]
+            },
+            {
+                "arguments": [
+                    {
+                        "controlType": "comboBox",
+                        "dataType": "string",
+                        "default": "info",
+                        "description": "Log level for this block",
+                        "name": "LogLevel",
+                        "options": [
+                            "trace",
+                            "debug",
+                            "info",
+                            "warning",
+                            "error",
+                            "fatal",
+                            "always"
+                        ]
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "true",
+                        "description": "If set to false, the block will immediately terminate",
+                        "name": "Enabled"
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "false",
+                        "description": "Dynamically enable or disable file writing functionality",
+                        "name": "WritingEnabled"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "string",
+                        "default": "",
+                        "description": "The file path to open for writing",
+                        "name": "FilePath"
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "false",
+                        "description": "Dynamically enable or disable whether to flush the file after each write",
+                        "name": "FlushAfterWrite"
+                    }
+                ],
+                "blockLibraryName": "blocks-core.io.TimingFileWriter",
+                "channels": [
+                    {
+                        "dataType": "uint8",
+                        "description": "Packets arriving on the input are written to file based on configuration",
+                        "direction": "input",
+                        "name": "input"
+                    }
+                ],
+                "description": "A file writer that writes a file in a special format that includes timing information for each message. A header (the string 'BB TF!') is written at the beginning of the file. Then, for every input message received, it calculates the current time (in seconds and nanoseconds since the first write to the file), writes the seconds value (4 bytes), the nanoseconds value (4 bytes), the length of the message data (8 bytes), and the message data itself to the end of the file",
+                "signals": [],
+                "slots": [],
+                "statistics": [
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages received across all input channels",
+                        "name": "TotalMessagesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages sent across all output channels",
+                        "name": "TotalMessagesOut"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes received across all input channels",
+                        "name": "TotalBytesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes sent across all output channels",
+                        "name": "TotalBytesOut"
+                    },
+                    {
+                        "dataType": "string",
+                        "description": "A bool indicating if the file is currently opened for writing",
+                        "name": "OpenForWriting"
+                    }
+                ]
+            },
+            {
+                "arguments": [
+                    {
+                        "controlType": "comboBox",
+                        "dataType": "string",
+                        "default": "info",
+                        "description": "Log level for this block",
+                        "name": "LogLevel",
+                        "options": [
+                            "trace",
+                            "debug",
+                            "info",
+                            "warning",
+                            "error",
+                            "fatal",
+                            "always"
+                        ]
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "true",
+                        "description": "If set to false, the block will immediately terminate",
+                        "name": "Enabled"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint32",
+                        "default": "100",
+                        "description": "The time (in milliseconds) to wait for a single write before giving up",
+                        "name": "WriteTimeout"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint32",
+                        "default": "100",
+                        "description": "The time (in milliseconds) to wait for a single read before giving up",
+                        "name": "ReadTimeout"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint32",
+                        "default": "212992",
+                        "description": "Socket maximum receive buffer size",
+                        "name": "SocketReceiveBufferSize"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint32",
+                        "default": "212992",
+                        "description": "Socket maximum send buffer size",
+                        "name": "SocketSendBufferSize"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint32",
+                        "default": "2",
+                        "description": "The number of write retries to make before declaring the connection dead",
+                        "name": "WriteRetries"
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "false",
+                        "description": "Resets the socket if set to true",
+                        "name": "Reset"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint32",
+                        "default": "100",
+                        "description": "The time (in ms) to wait for a TCP client to connect to its server",
+                        "name": "TcpClientConnectionTimeout"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "string",
+                        "default": "127.0.0.1",
+                        "description": "The address (hostname/port) of the TCP server to connect to",
+                        "name": "Address"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint32",
+                        "default": "0",
+                        "description": "The TCP port to connect over",
+                        "name": "Port"
+                    }
+                ],
+                "blockLibraryName": "blocks-core.network.TcpClient",
+                "channels": [
+                    {
+                        "dataType": "uint8",
+                        "description": "Data received on this channel will be sent to the connected TCP server (if any)",
+                        "direction": "input",
+                        "name": "input"
+                    },
+                    {
+                        "dataType": "uint8",
+                        "description": "Any data received from the connected TCP server will be sent to this channel",
+                        "direction": "output",
+                        "name": "output"
+                    }
+                ],
+                "description": "Connects to, receives, and sends data to a TCP server based on configuration",
+                "signals": [],
+                "slots": [],
+                "statistics": [
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages received across all input channels",
+                        "name": "TotalMessagesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages sent across all output channels",
+                        "name": "TotalMessagesOut"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes received across all input channels",
+                        "name": "TotalBytesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes sent across all output channels",
+                        "name": "TotalBytesOut"
+                    },
+                    {
+                        "dataType": "bool",
+                        "description": "Flag indicating that a connection has been made",
+                        "name": "Connected"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes written to all remote connections",
+                        "name": "TotalBytesWritten"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total bytes read from all remote connections",
+                        "name": "TotalBytesRead"
+                    },
+                    {
+                        "dataType": "uint32",
+                        "description": "Total number of server connections made",
+                        "name": "ServersConnected"
+                    },
+                    {
+                        "dataType": "uint32",
+                        "description": "Total number of server connections dropped",
+                        "name": "ServersDropped"
+                    }
+                ]
+            },
+            {
+                "arguments": [
+                    {
+                        "controlType": "comboBox",
+                        "dataType": "string",
+                        "default": "info",
+                        "description": "Log level for this block",
+                        "name": "LogLevel",
+                        "options": [
+                            "trace",
+                            "debug",
+                            "info",
+                            "warning",
+                            "error",
+                            "fatal",
+                            "always"
+                        ]
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "true",
+                        "description": "If set to false, the block will immediately terminate",
+                        "name": "Enabled"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint32",
+                        "default": "100",
+                        "description": "The time (in milliseconds) to wait for a single write before giving up",
+                        "name": "WriteTimeout"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint32",
+                        "default": "100",
+                        "description": "The time (in milliseconds) to wait for a single read before giving up",
+                        "name": "ReadTimeout"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint32",
+                        "default": "212992",
+                        "description": "Socket maximum receive buffer size",
+                        "name": "SocketReceiveBufferSize"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint32",
+                        "default": "212992",
+                        "description": "Socket maximum send buffer size",
+                        "name": "SocketSendBufferSize"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint32",
+                        "default": "2",
+                        "description": "The number of write retries to make before declaring the connection dead",
+                        "name": "WriteRetries"
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "false",
+                        "description": "Resets the socket if set to true",
+                        "name": "Reset"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint32",
+                        "default": "5",
+                        "description": "The maximum number of clients to allow",
+                        "name": "MaxClients"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint32",
+                        "default": "0",
+                        "description": "The TCP port to listen on",
+                        "name": "Port"
+                    }
+                ],
+                "blockLibraryName": "blocks-core.network.TcpServer",
+                "channels": [
+                    {
+                        "dataType": "uint8",
+                        "description": "Messages arriving on this channel will be sent to any connected clients or just one if meta matches a particular client",
+                        "direction": "input",
+                        "name": "input"
+                    },
+                    {
+                        "dataType": "uint8",
+                        "description": "Data received from any connected client will be sent to this output",
+                        "direction": "output",
+                        "name": "output"
+                    }
+                ],
+                "description": "Binds to a TCP socket and handles sending and receiving data from connected TCP clients based on configuration",
+                "signals": [],
+                "slots": [],
+                "statistics": [
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages received across all input channels",
+                        "name": "TotalMessagesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages sent across all output channels",
+                        "name": "TotalMessagesOut"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes received across all input channels",
+                        "name": "TotalBytesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes sent across all output channels",
+                        "name": "TotalBytesOut"
+                    },
+                    {
+                        "dataType": "bool",
+                        "description": "Flag indicating that a connection has been made",
+                        "name": "Connected"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes written to all remote connections",
+                        "name": "TotalBytesWritten"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total bytes read from all remote connections",
+                        "name": "TotalBytesRead"
+                    },
+                    {
+                        "dataType": "uint32",
+                        "description": "Total number of clients processed",
+                        "name": "ClientsProcessed"
+                    },
+                    {
+                        "dataType": "uint32",
+                        "description": "Total number of clients dropped",
+                        "name": "ClientsDropped"
+                    }
+                ]
+            },
+            {
+                "arguments": [
+                    {
+                        "controlType": "comboBox",
+                        "dataType": "string",
+                        "default": "info",
+                        "description": "Log level for this block",
+                        "name": "LogLevel",
+                        "options": [
+                            "trace",
+                            "debug",
+                            "info",
+                            "warning",
+                            "error",
+                            "fatal",
+                            "always"
+                        ]
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "true",
+                        "description": "If set to false, the block will immediately terminate",
+                        "name": "Enabled"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint32",
+                        "default": "100",
+                        "description": "The time (in milliseconds) to wait for a single write before giving up",
+                        "name": "WriteTimeout"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint32",
+                        "default": "100",
+                        "description": "The time (in milliseconds) to wait for a single read before giving up",
+                        "name": "ReadTimeout"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint32",
+                        "default": "212992",
+                        "description": "Socket maximum receive buffer size",
+                        "name": "SocketReceiveBufferSize"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint32",
+                        "default": "212992",
+                        "description": "Socket maximum send buffer size",
+                        "name": "SocketSendBufferSize"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint32",
+                        "default": "2",
+                        "description": "The number of write retries to make before declaring the connection dead",
+                        "name": "WriteRetries"
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "false",
+                        "description": "Resets the socket if set to true",
+                        "name": "Reset"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "string",
+                        "default": "127.0.0.1",
+                        "description": "The address to send UDP data to",
+                        "name": "Address"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint32",
+                        "default": "0",
+                        "description": "The UDP port to send data over",
+                        "name": "Port"
+                    }
+                ],
+                "blockLibraryName": "blocks-core.network.UdpClient",
+                "channels": [
+                    {
+                        "dataType": "uint8",
+                        "description": "Data sent to this input will be sent as a datagram to any known UDP client address and port",
+                        "direction": "input",
+                        "name": "input"
+                    },
+                    {
+                        "dataType": "uint8",
+                        "description": "Datagrams received from socket will be sent to this output as a message",
+                        "direction": "output",
+                        "name": "output"
+                    }
+                ],
+                "description": "Sends and receives datagrams to the given address and port",
+                "signals": [],
+                "slots": [],
+                "statistics": [
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages received across all input channels",
+                        "name": "TotalMessagesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages sent across all output channels",
+                        "name": "TotalMessagesOut"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes received across all input channels",
+                        "name": "TotalBytesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes sent across all output channels",
+                        "name": "TotalBytesOut"
+                    },
+                    {
+                        "dataType": "bool",
+                        "description": "Flag indicating that a connection has been made",
+                        "name": "Connected"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes written to all remote connections",
+                        "name": "TotalBytesWritten"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total bytes read from all remote connections",
+                        "name": "TotalBytesRead"
+                    },
+                    {
+                        "dataType": "uint32",
+                        "description": "Total number of server connections made",
+                        "name": "ServersConnected"
+                    },
+                    {
+                        "dataType": "uint32",
+                        "description": "Total number of server connections dropped",
+                        "name": "ServersDropped"
+                    }
+                ]
+            },
+            {
+                "arguments": [
+                    {
+                        "controlType": "comboBox",
+                        "dataType": "string",
+                        "default": "info",
+                        "description": "Log level for this block",
+                        "name": "LogLevel",
+                        "options": [
+                            "trace",
+                            "debug",
+                            "info",
+                            "warning",
+                            "error",
+                            "fatal",
+                            "always"
+                        ]
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "true",
+                        "description": "If set to false, the block will immediately terminate",
+                        "name": "Enabled"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint32",
+                        "default": "100",
+                        "description": "The time (in milliseconds) to wait for a single write before giving up",
+                        "name": "WriteTimeout"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint32",
+                        "default": "100",
+                        "description": "The time (in milliseconds) to wait for a single read before giving up",
+                        "name": "ReadTimeout"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint32",
+                        "default": "212992",
+                        "description": "Socket maximum receive buffer size",
+                        "name": "SocketReceiveBufferSize"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint32",
+                        "default": "212992",
+                        "description": "Socket maximum send buffer size",
+                        "name": "SocketSendBufferSize"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint32",
+                        "default": "2",
+                        "description": "The number of write retries to make before declaring the connection dead",
+                        "name": "WriteRetries"
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "false",
+                        "description": "Resets the socket if set to true",
+                        "name": "Reset"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint32",
+                        "default": "5",
+                        "description": "The maximum number of clients to allow",
+                        "name": "MaxClients"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint32",
+                        "default": "0",
+                        "description": "The UDP port to listen on",
+                        "name": "Port"
+                    }
+                ],
+                "blockLibraryName": "blocks-core.network.UdpServer",
+                "channels": [
+                    {
+                        "dataType": "uint8",
+                        "description": "Messages received on this channel will be sent to a configurable amount of past connections",
+                        "direction": "input",
+                        "name": "input"
+                    },
+                    {
+                        "dataType": "uint8",
+                        "description": "Datagrams received will be sent as messages to this channel",
+                        "direction": "output",
+                        "name": "output"
+                    }
+                ],
+                "description": "Binds a UDP socket to the given port for all incoming datagrams and sends data to configurable past connections",
+                "signals": [],
+                "slots": [],
+                "statistics": [
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages received across all input channels",
+                        "name": "TotalMessagesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages sent across all output channels",
+                        "name": "TotalMessagesOut"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes received across all input channels",
+                        "name": "TotalBytesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes sent across all output channels",
+                        "name": "TotalBytesOut"
+                    },
+                    {
+                        "dataType": "bool",
+                        "description": "Flag indicating that a connection has been made",
+                        "name": "Connected"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes written to all remote connections",
+                        "name": "TotalBytesWritten"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total bytes read from all remote connections",
+                        "name": "TotalBytesRead"
+                    },
+                    {
+                        "dataType": "uint32",
+                        "description": "Total number of clients processed",
+                        "name": "ClientsProcessed"
+                    },
+                    {
+                        "dataType": "uint32",
+                        "description": "Total number of clients dropped",
+                        "name": "ClientsDropped"
+                    },
+                    {
+                        "dataType": "uint32",
+                        "description": "The UDP Server UUID",
+                        "name": "ServerUuid"
+                    }
+                ]
+            },
+            {
+                "arguments": [
+                    {
+                        "controlType": "comboBox",
+                        "dataType": "string",
+                        "default": "info",
+                        "description": "Log level for this block",
+                        "name": "LogLevel",
+                        "options": [
+                            "trace",
+                            "debug",
+                            "info",
+                            "warning",
+                            "error",
+                            "fatal",
+                            "always"
+                        ]
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "true",
+                        "description": "If set to false, the block will immediately terminate",
+                        "name": "Enabled"
+                    }
+                ],
+                "blockLibraryName": "blocks-core.spool.Spool",
+                "channels": [
+                    {
+                        "dataType": "uint8",
+                        "description": "Input channel that accepts a uint8 buffer of bits",
+                        "direction": "input",
+                        "name": "input"
+                    },
+                    {
+                        "dataType": "uint8",
+                        "description": "Output channel that posts a uint8 buffer of symbols",
+                        "direction": "output",
+                        "name": "output"
+                    }
+                ],
+                "description": "The Spool is the command, response, telemetry front end system for building and managing chains and their state. The spool accepts Spool Commands (each contained inside a SpoolPacket) as input, executes the command if it is valid, and returns a Spool Response (also contained inside a SpoolPacket) on the output channel",
+                "signals": [],
+                "slots": [],
+                "statistics": [
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages received across all input channels",
+                        "name": "TotalMessagesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages sent across all output channels",
+                        "name": "TotalMessagesOut"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes received across all input channels",
+                        "name": "TotalBytesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes sent across all output channels",
+                        "name": "TotalBytesOut"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Command count for the XML_BLUEPRINT command",
+                        "name": "XmlBlueprintCommandCount"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Command count for the START_CHAIN command",
+                        "name": "StartChainCommandCount"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Command count for the STOP_CHAIN command",
+                        "name": "StopChainCommandCount"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Command count for the LIST_CHAIN_BLUEPRINTS command",
+                        "name": "ListChainBlueprintsCommandCount"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Command count for the DELETE_BLUEPRINT command",
+                        "name": "DeleteBlueprintCommandCount"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Command count for the LIST_RUNNING_CHAINS command",
+                        "name": "ListRunningChainsCommandCount"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Command count for the LIST_BLOCKS command",
+                        "name": "ListBlocksCommandCount"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Command count for the GET_ALL command",
+                        "name": "GetAllCommandCount"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Command count for the LIST_AVAILABLE_CHAINS command",
+                        "name": "ListAvailableChainsCommandCount"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Command count for the GET_ALL_STATES command",
+                        "name": "GetAllStatesCommandCount"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Command count for the SET_ALL_STATES command",
+                        "name": "SetAllStatesCommandCount"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Command count for the SAVE_ALL_STATES command",
+                        "name": "SaveAllStatesCommandCount"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Command count for the LOAD_ALL_STATES command",
+                        "name": "LoadAllStatesCommandCount"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Command count for the FILE_BLUEPRINT command",
+                        "name": "FileBlueprintCommandCount"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Command count for the GET_SUBSCRIBED command",
+                        "name": "GetSubscribedCommandCount"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Command count for the SET_ARGUMENT command",
+                        "name": "SetArgumentCommandCount"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Command count for the GET_ARGUMENT command",
+                        "name": "GetArgumentCommandCount"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Command count for the GET_ARGUMENTS command",
+                        "name": "GetArgumentsCommandCount"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Command count for the LIST_ARGUMENTS command",
+                        "name": "ListArgumentsCommandCount"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Command count for the GET_STATISTIC command",
+                        "name": "GetStatisticCommandCount"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Command count for the GET_STATISTICS command",
+                        "name": "GetStatisticsCommandCount"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Command count for the LIST_STATISTICS command",
+                        "name": "ListStatisticsCommandCount"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Command count for the SET_ARGUMENTS command",
+                        "name": "SetArgsCommandCount"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Command count for the GET_ARGS_STATS command",
+                        "name": "GetArgsStatsCommandCount"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Command count for the PUBLISH command",
+                        "name": "PublishCommandCount"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Command count for the GET_CHAIN_STATE command",
+                        "name": "GetChainStateCommandCount"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Command count for the SAVE_CHAIN_STATE command",
+                        "name": "SaveChainStateCommandCount"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Command count for the GET_BLOCK_DOC command",
+                        "name": "GetBlockDocCommandCount"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Command count for the GET_ALL_BLOCK_DOCS command",
+                        "name": "GetAllBlockDocsCommandCount"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Command count for valid commands that did not succeed",
+                        "name": "FailedCommandCount"
+                    }
+                ]
+            },
+            {
+                "arguments": [
+                    {
+                        "controlType": "comboBox",
+                        "dataType": "string",
+                        "default": "info",
+                        "description": "Log level for this block",
+                        "name": "LogLevel",
+                        "options": [
+                            "trace",
+                            "debug",
+                            "info",
+                            "warning",
+                            "error",
+                            "fatal",
+                            "always"
+                        ]
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "true",
+                        "description": "If set to false, the block will immediately terminate",
+                        "name": "Enabled"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "string",
+                        "default": "false",
+                        "description": "Indicates if the value should be incremented after being placed (default is false)",
+                        "name": "IncrementValue"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "string",
+                        "default": "false",
+                        "description": "Indicates if the value should be overwritten (true) or inserted (false - default) into the message - inserting only works if the bit length is a multiple of 8",
+                        "name": "OverwriteValue"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "string",
+                        "default": "true",
+                        "description": "Indicates if the bytes should be inserted MSB-first (true - default) or LSB-first (false) - ignored if bit length isn't a multiple of 8",
+                        "name": "IsMsb"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "string",
+                        "default": "0",
+                        "description": "The starting value - ignored if GetValueFromMeta is true",
+                        "name": "Value"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "string",
+                        "default": "0",
+                        "description": "Specifies the minimum value - ignored if GetValueFromMeta is true or IncrementValue is false",
+                        "name": "MinValue"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "string",
+                        "default": "0",
+                        "description": "Specifies the maximum value - default is to allow overflow; ignored if GetValueFromMeta is true or IncrementValue is false",
+                        "name": "MaxValue"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "string",
+                        "default": "0",
+                        "description": "Specifies the bit position at which to start injecting the value",
+                        "name": "ValueBitIndex"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "string",
+                        "default": "false",
+                        "description": "Specifies whether ValueBitIndex should start from the beginning (false - default) or the end (true) of the message",
+                        "name": "IndexFromEnd"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "string",
+                        "default": "0",
+                        "description": "Specifies the value size in bits",
+                        "name": "ValueBitLength"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "string",
+                        "default": "false",
+                        "description": "Whether to retrieve the value from the Value argument (false - default) or from a meta field (true)",
+                        "name": "GetValueFromMeta"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "string",
+                        "default": "",
+                        "description": "The meta key used to retrieve the value to be injected",
+                        "name": "ValueMetaTag"
+                    }
+                ],
+                "blockLibraryName": "blocks-core.utils.ValueInjector",
+                "channels": [
+                    {
+                        "dataType": "uint8",
+                        "description": "Input messages will have a value injected into them",
+                        "direction": "input",
+                        "name": "input"
+                    },
+                    {
+                        "dataType": "uint8",
+                        "description": "Input messages with injected value are sent to the output channel",
+                        "direction": "output",
+                        "name": "output"
+                    }
+                ],
+                "description": "Injects a value (which optionally increments) into every incoming message at a specified location, either by inserting or overwriting, and sends the message through the output channel",
+                "signals": [],
+                "slots": [],
+                "statistics": [
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages received across all input channels",
+                        "name": "TotalMessagesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages sent across all output channels",
+                        "name": "TotalMessagesOut"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes received across all input channels",
+                        "name": "TotalBytesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes sent across all output channels",
+                        "name": "TotalBytesOut"
+                    }
+                ]
+            },
+            {
+                "arguments": [
+                    {
+                        "controlType": "comboBox",
+                        "dataType": "string",
+                        "default": "info",
+                        "description": "Log level for this block",
+                        "name": "LogLevel",
+                        "options": [
+                            "trace",
+                            "debug",
+                            "info",
+                            "warning",
+                            "error",
+                            "fatal",
+                            "always"
+                        ]
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "true",
+                        "description": "If set to false, the block will immediately terminate",
+                        "name": "Enabled"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "string",
+                        "default": "",
+                        "description": "A list of meta tags to use when extracting meta values from message",
+                        "name": "MetaTag"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "string",
+                        "default": "",
+                        "description": "A value indicating the minimum allowed",
+                        "name": "MetaValueMin"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "string",
+                        "default": "",
+                        "description": "A value indicating the maximum allowed",
+                        "name": "MetaValueMax"
+                    },
+                    {
+                        "controlType": "comboBox",
+                        "dataType": "string",
+                        "default": "uint8",
+                        "description": "A string representing the type of value in the meta tag. Example uint64, int32, string",
+                        "name": "MetaValueType",
+                        "options": [
+                            "uint8",
+                            "uint16",
+                            "uint32",
+                            "uint64",
+                            "int8",
+                            "int16",
+                            "int32",
+                            "int64",
+                            "float32",
+                            "float64",
+                            "string"
+                        ]
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "false",
+                        "description": "A boolean indicating whether to drop messages when the value is outside of the limits",
+                        "name": "DropMsgIfOutOfLimit"
+                    }
+                ],
+                "blockLibraryName": "blocks-core.utils.ValueLimiter",
+                "channels": [
+                    {
+                        "dataType": "uint8",
+                        "description": "Input messages will have selected meta values logged",
+                        "direction": "input",
+                        "name": "input"
+                    },
+                    {
+                        "dataType": "uint8",
+                        "description": "Input messages are forwarded to the output channel unmodified",
+                        "direction": "output",
+                        "name": "output"
+                    }
+                ],
+                "description": "Extracts a value from the message meta and drops the message if the value is outside the specified limits (and dropping is enabled); otherwise the message is forwarded on unmodified",
+                "signals": [],
+                "slots": [],
+                "statistics": [
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages received across all input channels",
+                        "name": "TotalMessagesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages sent across all output channels",
+                        "name": "TotalMessagesOut"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes received across all input channels",
+                        "name": "TotalBytesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes sent across all output channels",
+                        "name": "TotalBytesOut"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "The number of messages received that were outside of the limits",
+                        "name": "OutOfLimitMsgCount"
+                    }
+                ]
+            },
+            {
+                "arguments": [
+                    {
+                        "controlType": "comboBox",
+                        "dataType": "string",
+                        "default": "info",
+                        "description": "Log level for this block",
+                        "name": "LogLevel",
+                        "options": [
+                            "trace",
+                            "debug",
+                            "info",
+                            "warning",
+                            "error",
+                            "fatal",
+                            "always"
+                        ]
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "true",
+                        "description": "If set to false, the block will immediately terminate",
+                        "name": "Enabled"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "string",
+                        "default": "tmpFileLogger.log",
+                        "description": "The name of the log file",
+                        "name": "FileLogName"
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "true",
+                        "description": "A boolean indicating whether to prepend the filename with the date",
+                        "name": "PrependDate"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "int64",
+                        "default": "-1",
+                        "description": "The maximum number of message bytes to log. Set to -1 to log all message bytes",
+                        "name": "NumberOfMsgBytesToLog"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "array_string",
+                        "default": "",
+                        "description": "A list of meta tags to use when extracting meta values from message",
+                        "name": "ValueMetaTags"
+                    }
+                ],
+                "blockLibraryName": "blocks-core.utils.ValueLogger",
+                "channels": [
+                    {
+                        "dataType": "uint8",
+                        "description": "Input messages will have selected meta values logged",
+                        "direction": "input",
+                        "name": "input"
+                    },
+                    {
+                        "dataType": "uint8",
+                        "description": "Input messages are forwarded to the output channel unmodified",
+                        "direction": "output",
+                        "name": "output"
+                    }
+                ],
+                "description": "Extracts meta values from input messages and logs the values to a file",
+                "signals": [],
+                "slots": [],
+                "statistics": [
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages received across all input channels",
+                        "name": "TotalMessagesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages sent across all output channels",
+                        "name": "TotalMessagesOut"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes received across all input channels",
+                        "name": "TotalBytesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes sent across all output channels",
+                        "name": "TotalBytesOut"
+                    }
+                ]
+            },
+            {
+                "arguments": [
+                    {
+                        "controlType": "comboBox",
+                        "dataType": "string",
+                        "default": "info",
+                        "description": "Log level for this block",
+                        "name": "LogLevel",
+                        "options": [
+                            "trace",
+                            "debug",
+                            "info",
+                            "warning",
+                            "error",
+                            "fatal",
+                            "always"
+                        ]
+                    },
+                    {
+                        "controlType": "checkBox",
+                        "dataType": "bool",
+                        "default": "true",
+                        "description": "If set to false, the block will immediately terminate",
+                        "name": "Enabled"
+                    },
+                    {
+                        "controlType": "comboBox",
+                        "dataType": "string",
+                        "default": "uint8",
+                        "description": "The data type that will be used for output",
+                        "name": "DataType",
+                        "options": [
+                            "uint8",
+                            "uint16",
+                            "uint32",
+                            "uint64",
+                            "int8",
+                            "int16",
+                            "int32",
+                            "int64",
+                            "float32",
+                            "float64"
+                        ]
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "array_float64",
+                        "default": "",
+                        "description": "A vector of numeric data that will be sent to the output channel",
+                        "name": "Data"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint32",
+                        "default": "1",
+                        "description": "The number of messages to generate on the output",
+                        "name": "NumMessages"
+                    },
+                    {
+                        "controlType": "textBox",
+                        "dataType": "uint32",
+                        "default": "0",
+                        "description": "The total byte rate to attempt to maintain, 0 for unlimited",
+                        "name": "SampleRate"
+                    }
+                ],
+                "blockLibraryName": "blocks-core.utils.VectorSource",
+                "channels": [
+                    {
+                        "dataType": "uint8",
+                        "description": "The specified vector is repeatedly sent to this channel",
+                        "direction": "output",
+                        "name": "output"
+                    }
+                ],
+                "description": "A source that periodically sends a fixed set of bytes to the output channel",
+                "signals": [],
+                "slots": [],
+                "statistics": [
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages received across all input channels",
+                        "name": "TotalMessagesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of messages sent across all output channels",
+                        "name": "TotalMessagesOut"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes received across all input channels",
+                        "name": "TotalBytesIn"
+                    },
+                    {
+                        "dataType": "uint64",
+                        "description": "Total number of bytes sent across all output channels",
+                        "name": "TotalBytesOut"
+                    }
+                ]
+            }
+        ]
+    },
+    "response": {
+        "message": "Success",
+        "status": true
+    }
+}
