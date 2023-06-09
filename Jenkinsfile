@@ -1,28 +1,19 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'node:lts-bullseye-slim'
+            args '-p 3000:3000'
+        }
+    }
     stages {
         stage('Build') {
             steps {
-                echo "Building react user interface.."
-                sh '''
-                npm install
-                '''
+                sh 'npm install'
             }
         }
-        stage('Test') {
+        stage('Test') { 
             steps {
-                echo "Testing.."
-                sh '''
-                echo "Enter Test Protocols Here (for UI)."
-                '''
-            }
-        }
-        stage('Deliver') {
-            steps {
-                echo 'Deliver....'
-                sh '''
-                echo "Enter Delivery Protcols Here (for UI)."
-                '''
+                sh './jenkins/scripts/test.sh' 
             }
         }
     }
