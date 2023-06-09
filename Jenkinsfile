@@ -13,7 +13,7 @@ pipeline {
             steps {
                 echo "Testing.."
                 sh '''
-                echo "Enter Test Protocols Here."
+                echo "Enter Test Protocols Here (for UI)."
                 '''
             }
         }
@@ -21,7 +21,7 @@ pipeline {
             steps {
                 echo 'Deliver....'
                 sh '''
-                echo "Enter Delivery Proticols Here."
+                echo "Enter Delivery Protcols Here (for UI)."
                 '''
             }
         }
