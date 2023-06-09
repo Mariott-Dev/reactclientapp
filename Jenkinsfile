@@ -1,29 +1,37 @@
 pipeline {
-    agent any
-    stages {
-        stage('Build') {
-            steps {
-                echo "Building react user interface.."
-                sh '''
-                npm install
-                '''
-            }
-        }
-        stage('Test') {
-            steps {
-                echo "Testing.."
-                sh '''
-                echo "Enter Test Protocols Here (for UI)."
-                '''
-            }
-        }
-        stage('Deliver') {
-            steps {
-                echo 'Deliver....'
-                sh '''
-                echo "Enter Delivery Protcols Here (for UI)."
-                '''
-            }
-        }
+  agent any
+  
+  stages {
+    stage('Checkout') {
+      steps {
+        // Checkout your source code from version control (e.g., Git)
+        git 'https://github.com/Mariott-Dev/reactclientapp.git'
+      }
     }
+    
+    stage('Install dependencies') {
+      steps {
+        // Install Node.js and NPM
+        sh 'curl -sL https://deb.nodesource.com/setup_14.x | bash -'
+        sh 'apt-get install -y nodejs'
+        
+        // Install project dependencies using NPM
+        sh 'npm ci'
+      }
+    }
+    
+    stage('Build') {
+      steps {
+        // Build the React application
+        sh 'npm run build'
+      }
+    }
+    
+    stage('Publish artifacts') {
+      steps {
+        // Archive the built artifacts for later use (e.g., deployment)
+        archiveArtifacts 'build/**'
+      }
+    }
+  }
 }
