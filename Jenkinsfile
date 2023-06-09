@@ -5,7 +5,7 @@ pipeline {
     stage('Checkout') {
       steps {
         // Checkout your source code from version control (e.g., Git)
-        git 'https://github.com/Mariott-Dev/reactclientapp.git'
+        git url: 'https://github.com/Mariott-Dev/reactclientapp/'
       }
     }
     
