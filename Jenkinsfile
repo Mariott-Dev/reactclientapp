@@ -1,37 +1,53 @@
 pipeline {
   agent any
-  
+
   stages {
     stage('Checkout') {
       steps {
-        // Checkout your source code from version control (e.g., Git)
-        git url: 'https://github.com/Mariott-Dev/reactclientapp'
+        // Checkout the repository
+        checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/Mariott-Dev/reactclientapp']]])
       }
     }
-    
-    stage('Install dependencies') {
+
+    stage('Install Dependencies') {
       steps {
-        // Install Node.js and NPM
-        sh 'curl -sL https://deb.nodesource.com/setup_14.x | bash -'
-        sh 'apt-get install -y nodejs'
+        // Install Node.js and npm
+        // Adjust the tool name 'Node.js 14.x' according to your Jenkins configuration
+        tool 'Node.js 1.5.1'
         
-        // Install project dependencies using NPM
-        sh 'npm ci'
+        // Install project dependencies
+        sh 'npm install'
       }
     }
-    
+
     stage('Build') {
       steps {
         // Build the React application
         sh 'npm run build'
       }
     }
-    
-    stage('Publish artifacts') {
+
+    stage('Test') {
       steps {
-        // Archive the built artifacts for later use (e.g., deployment)
-        archiveArtifacts 'build/**'
+        // Run tests (if applicable)
+        // Adjust the test command according to your project setup
+        sh 'npm run test'
+      }
+    }
+
+    stage('Package') {
+      steps {
+        // Archive the built application files
+        archiveArtifacts(artifacts: 'build/**', fingerprint: true)
       }
     }
   }
+
+  post {
+    always {
+      // Clean up by deleting node_modules and other temporary files
+      deleteDir()
+    }
+  }
 }
+
