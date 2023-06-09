@@ -13,7 +13,7 @@ pipeline {
       steps {
         // Install Node.js and npm
         // Adjust the tool name 'Node.js 14.x' according to your Jenkins configuration
-        tool 'Node.js 18.12.1'
+        tool 'Node.js 20.3.0'
         
         // Install project dependencies
         sh 'npm install'
